@@ -15,6 +15,9 @@ connectDB()
 const esportesRouter = require('./routes/esportes')
 app.use('/api', esportesRouter)
 
+const loginRouter = require('./routes/login')
+app.use('/login', loginRouter)
+
 //Iniciando servidor
 const port = process.env.PORT || 3000;
 
