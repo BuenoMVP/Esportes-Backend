@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 //Conexão com o MongoDB
-const connectDB = require('./db/mongoDB')
+const connectDB = require('./config/mongoDB')
 connectDB()
 
 //Definição das rotas
