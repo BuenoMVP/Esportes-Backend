@@ -1,15 +1,17 @@
-const jwt = require('jsonwebtoken')
 const express = require('express')
 const router = express.Router()
+const { verifyToken } = require('../middlewares/authMiddleware')
 
-const { createUser, listAllUsers, updateUser, deleteUser } = require('../controllers/loginController')
+const { createUser, listAllUsers, getUser, updateUser, deleteUser } = require('../controllers/loginController')
 
-router.get('/', listAllUsers)
+router.post('/', getUser)
 
-router.post('/cad', createUser)
+router.get('/users', verifyToken, listAllUsers)
 
-router.put('/edt/:id', updateUser)
+router.post('/cad', verifyToken, createUser)
 
-router.delete('/del/:id', deleteUser)
+router.put('/edt/:id', verifyToken, updateUser)
+
+router.delete('/del/:id', verifyToken, deleteUser)
 
 module.exports = router
