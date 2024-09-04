@@ -18,6 +18,9 @@ app.use('/api', esportesRouter)
 const loginRouter = require('./routes/login')
 app.use('/login', loginRouter)
 
+const categoryRouter = require('./routes/category')
+app.use('/category', categoryRouter)
+
 //Iniciando servidor
 const port = process.env.PORT || 3000;
 

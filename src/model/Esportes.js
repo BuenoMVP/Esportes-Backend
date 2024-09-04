@@ -7,12 +7,17 @@ const esportesSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-    players: {
+    players_number: {
         type: Number, 
         required: true
     },
-    time: {
-        type: String, 
+    type: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+    }],
+    userID: {
+        type: String,
         required: true
     },
     date: {

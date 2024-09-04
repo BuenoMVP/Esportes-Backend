@@ -1,11 +1,11 @@
-const Login = require('../model/Login')
+const User = require('../model/User')
 const { createToken } = require('../middlewares/authMiddleware')
 
 const createUser = async (req, res) => {
     const { user, password, admin, addInfo } = req.body
     
     try {
-        const newUser = new Login({ user, password, admin, addInfo })
+        const newUser = new User({ user, password, admin, addInfo })
         await newUser.save()
         res.status(201).send(newUser)
     } catch (err) {
@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
 
 const listAllUsers = async (req, res) => {
     try {
-        const listUsers = await Login.find()
+        const listUsers = await User.find()
         res.status(200).send(listUsers)
     } catch (err) {
         res.status(500).send({ "Error to list users": err })
@@ -26,7 +26,7 @@ const getUser = async (req, res) => {
     const { user, password } = req.body
 
     try {
-        const validUser = await Login.find({
+        const validUser = await User.find({
             user: user, 
             password: password
         })
@@ -47,7 +47,7 @@ const updateUser = async (req, res) => {
     const { user, password, admin, addInfo } = req.body
     
     try {
-        const updatedUser = await Login.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
             { _id: id },
             { user, password, admin, addInfo },
             { new: true, runValidators: true }
@@ -67,7 +67,7 @@ const deleteUser = async (req, res) => {
     const { id } = req.params
 
     try {
-        const deletedUser = await Login.findOneAndDelete({ _id: id })
+        const deletedUser = await User.findOneAndDelete({ _id: id })
 
         if (!deletedUser) {
             res.status(404).send({ err: "User not found"})

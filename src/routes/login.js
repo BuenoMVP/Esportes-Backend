@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { verifyToken } = require('../middlewares/authMiddleware')
 
-const { createUser, listAllUsers, getUser, updateUser, deleteUser } = require('../controllers/loginController')
+const { createUser, listAllUsers, getUser, updateUser, deleteUser } = require('../controllers/userController')
 
 router.post('/', getUser)
 
