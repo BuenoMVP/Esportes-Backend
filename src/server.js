@@ -15,8 +15,8 @@ connectDB()
 const esportesRouter = require('./routes/esportes')
 app.use('/api', esportesRouter)
 
-const loginRouter = require('./routes/login')
-app.use('/login', loginRouter)
+const userRouter = require('./routes/user')
+app.use('/login', userRouter)
 
 const categoryRouter = require('./routes/category')
 app.use('/category', categoryRouter)
