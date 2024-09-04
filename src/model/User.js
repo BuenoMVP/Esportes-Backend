@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 //Schema para a tabela
-const loginSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     user: {
         type: String, 
         required: true
@@ -21,4 +21,4 @@ const loginSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Login', loginSchema)
+module.exports = mongoose.model('User', userSchema)
