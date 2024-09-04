@@ -26,7 +26,7 @@ const updateCategory = async (req, res) => {
     const { name, description } = req.body
     
     try {
-        const updatedCategory = await Categorys.findOneAndUpdate(
+        const updatedCategory = await Category.findOneAndUpdate(
             { _id: id },
             { name: name, description: description }
         )
