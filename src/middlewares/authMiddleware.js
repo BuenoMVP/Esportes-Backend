@@ -1,10 +1,9 @@
-const jwt = require('jsonwebtoken')
-const secretKey = process.env.JWT_SECRET
+const auth = require('./authService')
 
 const createToken = (user) => {
     let { _id, admin } = user
 
-    let token = jwt.sign({ _id: _id, admin: admin }, secretKey)
+    let token = auth.codeAuth({ _id: _id, admin: admin })
 
     if (admin) {
         return { admin: admin, token: token }
@@ -20,7 +19,7 @@ const verifyToken = (req, res, next) => {
     try {
         if (token[0] == 'Bearer') {
             token = token[1]
-            const credentials = jwt.verify(token, secretKey)
+            const credentials = auth.decodeAuth(token)
             console.log(credentials)
             credentials ? next() : res.json({ error: 'You do not have permission to access this page!'})
             
@@ -40,7 +39,7 @@ const verifyTokenAdmin = (req, res, next) => {
     try {
         if (token[0] == 'Bearer') {
             token = token[1]
-            const credentials = jwt.verify(token, secretKey)
+            const credentials = auth.decodeAuth(token)
             console.log(credentials)
             credentials.admin ? next() : res.status(403).json({ error: 'You do not have permission to access this page!'})
             
