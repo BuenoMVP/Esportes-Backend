@@ -1,9 +1,9 @@
 const auth = require('./authService')
 
 const createToken = (user) => {
-    let { _id, admin } = user
+    let { id_api, admin } = user
 
-    let token = auth.codeAuth({ _id: _id, admin: admin })
+    let token = auth.codeAuth({ id: id_api, admin: admin })
 
     if (admin) {
         return { admin: admin, token: token }
@@ -48,7 +48,7 @@ const verifyTokenAdmin = (req, res, next) => {
         }
 
     } catch (error) {
-        res.status(403).json({ error: 'Token inválido: ' + error })
+        res.status(403).json({ 'Invalid token': error })
     }
 }
 

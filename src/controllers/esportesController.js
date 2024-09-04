@@ -10,17 +10,18 @@ const createEsporte = async (req, res) => {
     const { name, players_number, type } = req.body
     
     try {
-        const objTypes = await categorySchema.find({_id: type})
+        const objTypes = await categorySchema.find({ id_api: type })
 
         if (!objTypes) {
             res.status(404).send({Error: "Types Not Found!"})
         }
 
         const newEsporte = new Esportes({ 
+            id_api: Date.now(),
             name: name, 
             players_number: players_number, 
             type: [...objTypes], 
-            userID: credential._id
+            userID: credential.id
         })
 
         await newEsporte.save()
@@ -48,7 +49,7 @@ const updateEsporte = async (req, res) => {
     const { name, players_number, type } = req.body
     
     try {
-        const objTypes = await categorySchema.find({_id: type})
+        const objTypes = await categorySchema.find({ id_api: type })
 
         if (!objTypes) {
             res.status(404).send({ Error: "Types Not Found!" })
@@ -57,18 +58,17 @@ const updateEsporte = async (req, res) => {
         let updatedEsporte
 
         if ( credential.admin == false ) {
-            updatedEsporte = await Esportes.findOneAndUpdate({_id: id, userID: credential._id},{ 
+            updatedEsporte = await Esportes.findOneAndUpdate({ id_api: id, userID: credential.id },{ 
                 name: name, 
                 players_number: players_number, 
                 type: [...objTypes], 
-                userID: credential._id
+                userID: credential.id
             })
         } else {
-            updatedEsporte = await Esportes.findOneAndUpdate({_id: id},{ 
+            updatedEsporte = await Esportes.findOneAndUpdate({ id_api: id },{ 
                 name: name, 
                 players_number: players_number, 
-                type: [...objTypes], 
-                userID: credential._id
+                type: [...objTypes]
             })
         }
 
@@ -96,9 +96,9 @@ const deleteEsporte = async (req, res) => {
         let deletedEsporte
 
         if ( credential.admin == false ) {
-            deletedEsporte = await Esportes.findOneAndDelete({ _id: id, userID: credential._id })
+            deletedEsporte = await Esportes.findOneAndDelete({ id_api: id, userID: credential.id })
         } else {
-            deletedEsporte = await Esportes.findOneAndDelete({ _id: id })
+            deletedEsporte = await Esportes.findOneAndDelete({ id_apí: id })
         }
 
         if (!deletedEsporte) {

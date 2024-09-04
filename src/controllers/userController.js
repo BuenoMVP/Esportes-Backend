@@ -3,11 +3,26 @@ const { createToken } = require('../middlewares/authMiddleware')
 
 const createUser = async (req, res) => {
     const { user, password, admin, addInfo } = req.body
-    
+
     try {
-        const newUser = new User({ user, password, admin, addInfo })
-        await newUser.save()
-        res.status(201).send(newUser)
+        const validUser = await User.find({
+            user: user
+        })
+        
+        if ( validUser.length >= 1 ) {
+            res.status(406).send({ "Error to create user": "Username already in use!" })
+        } else {
+            const newUser = new User({ 
+                id_api: Date.now(),
+                user: user, 
+                password: password, 
+                admin: admin, 
+                addInfo: addInfo 
+            })
+            await newUser.save()
+            res.status(201).send(newUser)
+        }
+        
     } catch (err) {
         res.status(500).send({ "Error to create user": err })
     }
@@ -47,11 +62,12 @@ const updateUser = async (req, res) => {
     const { user, password, admin, addInfo } = req.body
     
     try {
-        const updatedUser = await User.findOneAndUpdate(
-            { _id: id },
-            { user, password, admin, addInfo },
-            { new: true, runValidators: true }
-        )
+        const updatedUser = await User.findOneAndUpdate({ id_api: id },{ 
+            user: user, 
+            password: password, 
+            admin: admin, 
+            addInfo: addInfo 
+        })
 
         if (!updatedUser) {
             res.status(404).send({ err: "User not found" })
@@ -67,7 +83,7 @@ const deleteUser = async (req, res) => {
     const { id } = req.params
 
     try {
-        const deletedUser = await User.findOneAndDelete({ _id: id })
+        const deletedUser = await User.findOneAndDelete({ id_api: id })
 
         if (!deletedUser) {
             res.status(404).send({ err: "User not found"})

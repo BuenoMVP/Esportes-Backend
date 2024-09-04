@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 
 //Schema para a tabela
 const userSchema = new mongoose.Schema({
+    id_api: {
+        type: String,
+        required: true
+    },
     user: {
         type: String, 
         required: true
