@@ -1,11 +1,25 @@
 const Esportes = require('../model/Esportes')
+const categorySchema = require('../model/Category')
 
 const createEsporte = async (req, res) => {
-    const { name, players, time } = req.body
+    const { name, players_number, type, userID } = req.body
     
     try {
-        const newEsporte = new Esportes({ name, players, time})
+        const objTypes = await categorySchema.find({_id: type})
+
+        if (!objTypes) {
+            res.status(404).send({Error: "Types Not Found!"})
+        }
+
+        const newEsporte = new Esportes({ 
+            name: name, 
+            players_number: players_number, 
+            type: [...objTypes], 
+            userID: userID
+        })
+
         await newEsporte.save()
+
         res.status(201).send(newEsporte)
     } catch (err) {
         res.status(500).send({ "Error to create esporte": err })
@@ -14,8 +28,8 @@ const createEsporte = async (req, res) => {
 
 const listAllEsportes = async (req, res) => {
     try {
-        const listEsportes = await Esportes.find()
-        res.status(200).send(listEsportes)
+        const listAllEsportes = await Esportes.find().populate('type')
+        res.status(200).send(listAllEsportes)
     } catch (err) {
         res.status(500).send({ "Error to list esportes": err })
     }
@@ -23,14 +37,21 @@ const listAllEsportes = async (req, res) => {
 
 const updateEsporte = async (req, res) => {
     const { id } = req.params
-    const { name, players, time } = req.body
+    const { name, players_number, type, userID } = req.body
     
     try {
-        const updatedEsporte = await Esportes.findOneAndUpdate(
-            { _id: id },
-            { name, players, time },
-            { new: true, runValidators: true }
-        )
+        const objTypes = await categorySchema.find({_id: type})
+
+        if (!objTypes) {
+            res.status(404).send({Error: "Types Not Found!"})
+        }
+        
+        const updatedEsporte = await Esportes.findOneAndUpdate({ 
+            name: name, 
+            players_number: players_number, 
+            type: [...objTypes], 
+            userID: userID
+        })
 
         if (!updatedEsporte) {
             res.status(404).send({ err: "Esporte not found" })
