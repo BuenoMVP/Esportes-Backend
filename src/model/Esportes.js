@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 
 //Schema para a tabela
 const esportesSchema = new mongoose.Schema({
+    id_api: {
+        type: String,
+        required: true
+    },
     name: {
         type: String, 
         required: true

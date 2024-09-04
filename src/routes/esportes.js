@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 
 const { createEsporte, listAllEsportes, updateEsporte, deleteEsporte } = require('../controllers/esportesController')
+const { verifyToken } = require('../middlewares/authMiddleware')
 
-router.get('/', listAllEsportes)
+router.get('/', verifyToken, listAllEsportes)
 
-router.post('/', createEsporte)
+router.post('/', verifyToken, createEsporte)
 
-router.put('/:id', updateEsporte)
+router.put('/:id', verifyToken, updateEsporte)
 
-router.delete('/:id', deleteEsporte)
+router.delete('/:id', verifyToken, deleteEsporte)
 
 module.exports = router

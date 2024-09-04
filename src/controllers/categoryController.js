@@ -4,7 +4,11 @@ const createCategory = async (req, res) => {
     const { name, description } = req.body
     
     try {
-        const newCategory = new Category({ name, description })
+        const newCategory = new Category({ 
+            id_api: Date.now(),
+            name: name, 
+            description: description 
+        })
         await newCategory.save()
         res.status(201).send(newCategory)
     } catch (err) {
@@ -26,10 +30,10 @@ const updateCategory = async (req, res) => {
     const { name, description } = req.body
     
     try {
-        const updatedCategory = await Categorys.findOneAndUpdate(
-            { _id: id },
-            { name: name, description: description }
-        )
+        const updatedCategory = await Category.findOneAndUpdate({ id_api: id },{ 
+            name: name, 
+            description: description 
+        })
 
         if (!updatedCategory) {
             res.status(404).send({ err: "Category not found" })
@@ -45,7 +49,7 @@ const deleteCategory = async (req, res) => {
     const { id } = req.params
 
     try {
-        const deletedCategory = await Category.findOneAndDelete({ _id: id })
+        const deletedCategory = await Category.findOneAndDelete({ id_api: id })
 
         if (!deletedCategory) {
             res.status(404).send({ err: "Category not found"})
