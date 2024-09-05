@@ -2,14 +2,17 @@
 const express = require('express')
 const router = express.Router()
 
-const { createEsporte, listAllEsportes, updateEsporte, deleteEsporte, listEsportesByCategory } = require('../controllers/esportesController')
+const { createEsporte, listAllEsportes, updateEsporte, deleteEsporte, listEsportesByCategory, listEsportesByUser } = require('../controllers/esportesController')
 const { verifyToken, verifyTokenAdmin } = require('../middlewares/authMiddleware')
 
 //Feature exclusiva
 router.post('/feature', verifyTokenAdmin, listEsportesByCategory)
 
+//Rota administrativa para ver todos os esportes do BD
+router.get('/all', verifyTokenAdmin, listAllEsportes)
+
 //Rotas para o CRUD
-router.get('/', verifyToken, listAllEsportes)
+router.get('/', verifyToken, listEsportesByUser)
 
 router.post('/', verifyToken, createEsporte)
 

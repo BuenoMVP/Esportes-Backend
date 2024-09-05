@@ -20,7 +20,6 @@ const verifyToken = (req, res, next) => {
         if (token[0] == 'Bearer') {
             token = token[1]
             const credentials = auth.decodeAuth(token)
-            console.log(credentials)
             credentials ? next() : res.json({ error: 'You do not have permission to access this page!'})
             
         } else {
@@ -40,7 +39,6 @@ const verifyTokenAdmin = (req, res, next) => {
         if (token[0] == 'Bearer') {
             token = token[1]
             const credentials = auth.decodeAuth(token)
-            console.log(credentials)
             credentials.admin ? next() : res.status(403).json({ error: 'You do not have permission to access this page!'})
             
         } else {

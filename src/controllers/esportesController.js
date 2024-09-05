@@ -145,4 +145,25 @@ const listEsportesByCategory = async (req, res) => {
     }
 }
 
-module.exports = { createEsporte, listAllEsportes, updateEsporte, deleteEsporte, listEsportesByCategory }
+const listEsportesByUser = async (req, res) => {
+    const limit = parseInt(req.query.limite) || 5
+    const pagina = parseInt(req.query.pagina) || 1
+    const offset = limit * (pagina - 1)
+
+    const token = req.headers['authorization'].split(" ")
+    const credential = auth.decodeAuth(token[1])
+
+    try {
+        const listEsportesByUser = await Esportes.find({ userID: credential.id }).skip(offset).limit(limit).populate('type')
+
+        if (listEsportesByUser.length > 0)
+            res.status(200).send(listEsportesByUser)
+        else
+            res.status(404).send({ Error: "Esportes by User Not Found!" })
+
+    } catch (err) {
+        res.status(500).send({ "Error to list esportes by user": err })
+    }
+}
+
+module.exports = { createEsporte, listAllEsportes, updateEsporte, deleteEsporte, listEsportesByCategory, listEsportesByUser }
