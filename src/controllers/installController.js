@@ -3,6 +3,9 @@ const User = require('../model/User')
 const Category = require('../model/Category')
 
 const install = async (req, res) => {
+    // #swagger.tags = ['Install']
+    // #swagger.summary = 'Instalar Banco de Dados'
+    // #swagger.description = 'Rota responsável por criar as tabelas e registros no Banco do usuário'
     try {
         const users = [
             {

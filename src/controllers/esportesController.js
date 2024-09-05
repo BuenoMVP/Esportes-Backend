@@ -4,6 +4,9 @@ const Esportes = require('../model/Esportes')
 const Category = require('../model/Category')
 
 const createEsporte = async (req, res) => {
+    // #swagger.tags = ['API']
+    // #swagger.summary = 'Criação de Esportes'
+    // #swagger.description = 'Rota responsável por criar os esportes na conta do usário autenticado'
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
     
@@ -33,6 +36,12 @@ const createEsporte = async (req, res) => {
 }
 
 const listAllEsportes = async (req, res) => {
+    // #swagger.tags = ['API']
+    // #swagger.summary = 'ADM - Lista todos os esportes no BD'
+    // #swagger.description = 'Rota responsável por listar todos os esportes no Banco. Acessível somente para ADMs'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const limit = parseInt(req.query.limite) || 5
     const pagina = parseInt(req.query.pagina) || 1
     const offset = limit * (pagina - 1)
@@ -46,6 +55,12 @@ const listAllEsportes = async (req, res) => {
 }
 
 const updateEsporte = async (req, res) => {
+    // #swagger.tags = ['API']
+    // #swagger.summary = 'Altera os esportes do usuário'
+    // #swagger.description = 'Rota responsável por atualizar os esportes na conta do usário autenticado'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
 
@@ -91,6 +106,12 @@ const updateEsporte = async (req, res) => {
 }
 
 const deleteEsporte = async (req, res) => {
+    // #swagger.tags = ['API']
+    // #swagger.summary = 'Deleta os esportes do usuário'
+    // #swagger.description = 'Rota responsável por deketar os esportes na conta do usário autenticado'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
 
@@ -120,6 +141,12 @@ const deleteEsporte = async (req, res) => {
 }
 
 const listEsportesByCategory = async (req, res) => {
+    // #swagger.tags = ['Feature']
+    // #swagger.summary = 'ADM - Lista, por categoria, todos os esportes do BD'
+    // #swagger.description = 'Rota responsável por filtrar os esportes por categoria no Banco. Acessível somente para ADMs'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const limit = parseInt(req.query.limite) || 5
     const pagina = parseInt(req.query.pagina) || 1
     const offset = limit * (pagina - 1)
@@ -146,6 +173,12 @@ const listEsportesByCategory = async (req, res) => {
 }
 
 const listEsportesByUser = async (req, res) => {
+    // #swagger.tags = ['API']
+    // #swagger.summary = 'Lista os esportes do usuário'
+    // #swagger.description = 'Rota responsável por listar os esportes na conta do usário autenticado'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const limit = parseInt(req.query.limite) || 5
     const pagina = parseInt(req.query.pagina) || 1
     const offset = limit * (pagina - 1)

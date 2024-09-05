@@ -24,6 +24,11 @@ app.use('/category', categoryRouter)
 const installRouter = require('./routes/install')
 app.use('/install', installRouter)
 
+//Documentação com swagger
+const swaggerUI = require('swagger-ui-express')
+const swaggerFile = require('../swagger_doc.json')
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile))
+
 //Iniciando servidor
 const port = process.env.PORT || 3000;
 
