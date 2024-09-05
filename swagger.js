@@ -1,4 +1,4 @@
-const autogen = require('swagger-autogen')()
+const autogen = require('swagger-autogen')({openapi: '3.0.0'})
 
 const output = './swagger_doc.json'
 const endpoints = [ './src/server.js' ]

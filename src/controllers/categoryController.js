@@ -4,6 +4,9 @@ const createCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Criar Categoria no Banco'
     // #swagger.description = 'Rota responsável por criar as categorias válidas para inserção dos esportes. Acessível somente por ADMs'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const { name, description } = req.body
     
     try {
@@ -39,6 +42,9 @@ const updateCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Atualizar Categoria no Banco'
     // #swagger.description = 'Rota responsável por atualizar as categorias válidas para inserção dos esportes. Acessível somente por ADMs'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const { id } = req.params
     const { name, description } = req.body
     
@@ -62,6 +68,9 @@ const deleteCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Deletar Categoria no Banco'
     // #swagger.description = 'Rota responsável por deletar as categorias para inserção dos esportes. Acessível somente por ADMs'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const { id } = req.params
 
     try {
