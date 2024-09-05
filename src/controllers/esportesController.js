@@ -33,8 +33,12 @@ const createEsporte = async (req, res) => {
 }
 
 const listAllEsportes = async (req, res) => {
+    const limit = parseInt(req.query.limite) || 5
+    const pagina = parseInt(req.query.pagina) || 1
+    const offset = limit * (pagina - 1)
+
     try {
-        const listAllEsportes = await Esportes.find().populate('type')
+        const listAllEsportes = await Esportes.find().skip(offset).limit(limit).populate('type')
         res.status(200).send(listAllEsportes)
     } catch (err) {
         res.status(500).send({ "Error to list esportes": err })
@@ -116,6 +120,10 @@ const deleteEsporte = async (req, res) => {
 }
 
 const listEsportesByCategory = async (req, res) => {
+    const limit = parseInt(req.query.limite) || 5
+    const pagina = parseInt(req.query.pagina) || 1
+    const offset = limit * (pagina - 1)
+
     const { type } = req.body
 
     try {
@@ -125,7 +133,7 @@ const listEsportesByCategory = async (req, res) => {
             res.status(404).send({ Error: "Types Not Found!" })
         }
         
-        const listEsportesByCategory = await Esportes.find({ type: typesList }).populate('type')
+        const listEsportesByCategory = await Esportes.find({ type: typesList }).skip(offset).limit(limit).populate('type')
 
         if (listEsportesByCategory.length > 0)
             res.status(200).send(listEsportesByCategory)
