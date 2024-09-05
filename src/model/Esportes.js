@@ -23,10 +23,6 @@ const esportesSchema = new mongoose.Schema({
     userID: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now
     }
 })
 

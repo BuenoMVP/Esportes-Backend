@@ -17,8 +17,12 @@ const createCategory = async (req, res) => {
 }
 
 const listAllCategories = async (req, res) => {
+    const limit = parseInt(req.query.limite) || 5
+    const pagina = parseInt(req.query.pagina) || 1
+    const offset = limit * (pagina - 1)
+
     try {
-        const listCategory = await Category.find()
+        const listCategory = await Category.find().skip(offset).limit(limit)
         res.status(200).send(listCategory)
     } catch (err) {
         res.status(500).send({ "Error to list Categories": err })

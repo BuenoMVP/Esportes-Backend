@@ -57,8 +57,12 @@ const createUserAdmin = async (req, res) => {
 }
 
 const listAllUsers = async (req, res) => {
+    const limit = parseInt(req.query.limite) || 5
+    const pagina = parseInt(req.query.pagina) || 1
+    const offset = limit * (pagina - 1)
+
     try {
-        const listUsers = await User.find()
+        const listUsers = await User.find().skip(offset).limit(limit)
         res.status(200).send(listUsers)
     } catch (err) {
         res.status(500).send({ "Error to list users": err })
