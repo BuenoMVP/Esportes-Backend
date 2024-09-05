@@ -1,6 +1,9 @@
 const Category = require('../model/Category')
 
 const createCategory = async (req, res) => {
+    // #swagger.tags = ['Category']
+    // #swagger.summary = 'ADM - Criar Categoria no Banco'
+    // #swagger.description = 'Rota responsável por criar as categorias válidas para inserção dos esportes. Acessível somente por ADMs'
     const { name, description } = req.body
     
     try {
@@ -17,6 +20,9 @@ const createCategory = async (req, res) => {
 }
 
 const listAllCategories = async (req, res) => {
+    // #swagger.tags = ['Category']
+    // #swagger.summary = 'Lista as Categorias presentes no Banco'
+    // #swagger.description = 'Rota responsável por listar todas as categorias válidas para inserção dos esportes'
     const limit = parseInt(req.query.limite) || 5
     const pagina = parseInt(req.query.pagina) || 1
     const offset = limit * (pagina - 1)
@@ -30,6 +36,9 @@ const listAllCategories = async (req, res) => {
 }
 
 const updateCategory = async (req, res) => {
+    // #swagger.tags = ['Category']
+    // #swagger.summary = 'ADM - Atualizar Categoria no Banco'
+    // #swagger.description = 'Rota responsável por atualizar as categorias válidas para inserção dos esportes. Acessível somente por ADMs'
     const { id } = req.params
     const { name, description } = req.body
     
@@ -50,6 +59,9 @@ const updateCategory = async (req, res) => {
 }
 
 const deleteCategory = async (req, res) => {
+    // #swagger.tags = ['Category']
+    // #swagger.summary = 'ADM - Deletar Categoria no Banco'
+    // #swagger.description = 'Rota responsável por deletar as categorias para inserção dos esportes. Acessível somente por ADMs'
     const { id } = req.params
 
     try {

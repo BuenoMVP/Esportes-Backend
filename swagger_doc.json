@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Projeto Final de Back-End",
-    "description": "Documentação com Swagger",
+    "description": "Documentação das rotas presentes no prjeto final utilizando o Swagger",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
@@ -13,7 +13,11 @@
   "paths": {
     "/api/feature": {
       "post": {
-        "description": "",
+        "tags": [
+          "Feature"
+        ],
+        "summary": "ADM - Lista, por categoria, todos os esportes do BD",
+        "description": "Rota responsável por filtrar os esportes por categoria no Banco. Acessível somente para ADMs",
         "parameters": [
           {
             "name": "authorization",
@@ -64,7 +68,11 @@
     },
     "/api/all": {
       "get": {
-        "description": "",
+        "tags": [
+          "API"
+        ],
+        "summary": "ADM - Lista todos os esportes no BD",
+        "description": "Rota responsável por listar todos os esportes no Banco. Acessível somente para ADMs",
         "parameters": [
           {
             "name": "authorization",
@@ -100,7 +108,11 @@
     },
     "/api/": {
       "get": {
-        "description": "",
+        "tags": [
+          "API"
+        ],
+        "summary": "Lista os esportes do usuário",
+        "description": "Rota responsável por listar os esportes na conta do usário autenticado",
         "parameters": [
           {
             "name": "authorization",
@@ -137,7 +149,11 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "API"
+        ],
+        "summary": "Criação de Esportes",
+        "description": "Rota responsável por criar os esportes na conta do usário autenticado",
         "parameters": [
           {
             "name": "authorization",
@@ -187,7 +203,11 @@
     },
     "/api/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "API"
+        ],
+        "summary": "Altera os esportes do usuário",
+        "description": "Rota responsável por atualizar os esportes na conta do usário autenticado",
         "parameters": [
           {
             "name": "id",
@@ -238,7 +258,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "API"
+        ],
+        "summary": "Deleta os esportes do usuário",
+        "description": "Rota responsável por deketar os esportes na conta do usário autenticado",
         "parameters": [
           {
             "name": "id",
@@ -273,7 +297,11 @@
     },
     "/login/": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Fazer login na API",
+        "description": "Rota responsável por realizar a validação e entrega do token de acesso ao usuário",
         "parameters": [
           {
             "name": "body",
@@ -304,7 +332,11 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Atualizar dados do usuário",
+        "description": "Rota responsável por atualizar as informações pessoais do usuário autenticado",
         "parameters": [
           {
             "name": "authorization",
@@ -349,7 +381,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Deletar dados do usuário",
+        "description": "Rota responsável por deletar os dados do usuário autenticado",
         "parameters": [
           {
             "name": "authorization",
@@ -378,7 +414,11 @@
     },
     "/login/cad": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "Criar usuário",
+        "description": "Rota responsável por criar as credenciais de login para um novo usuário",
         "parameters": [
           {
             "name": "body",
@@ -414,7 +454,11 @@
     },
     "/login/users": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "ADM - Listar todos os usuário cadastrados",
+        "description": "Rota responsável por listar todos os usuários cadastrados na aplicação. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "authorization",
@@ -450,7 +494,11 @@
     },
     "/login/adm": {
       "post": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "ADM - Criar administrador da API",
+        "description": "Rota responsável por criar os administradores da API. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "authorization",
@@ -500,7 +548,11 @@
     },
     "/login/adm/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "ADM - Atualizar usuários da API",
+        "description": "Rota responsável por atulizar as informações e permissões dos usuários cadastrados na API. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "id",
@@ -554,7 +606,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "summary": "ADM - Deletar usuário da API",
+        "description": "Rota responsável por deletar usuário cadastrados na API. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "id",
@@ -589,7 +645,11 @@
     },
     "/category/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "summary": "Lista as Categorias presentes no Banco",
+        "description": "Rota responsável por listar todas as categorias válidas para inserção dos esportes",
         "parameters": [
           {
             "name": "limite",
@@ -612,7 +672,11 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "summary": "ADM - Criar Categoria no Banco",
+        "description": "Rota responsável por criar as categorias válidas para inserção dos esportes. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "authorization",
@@ -653,7 +717,11 @@
     },
     "/category/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "summary": "ADM - Atualizar Categoria no Banco",
+        "description": "Rota responsável por atualizar as categorias válidas para inserção dos esportes. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "id",
@@ -701,7 +769,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "summary": "ADM - Deletar Categoria no Banco",
+        "description": "Rota responsável por deletar as categorias para inserção dos esportes. Acessível somente por ADMs",
         "parameters": [
           {
             "name": "id",
@@ -736,7 +808,11 @@
     },
     "/install/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Install"
+        ],
+        "summary": "Instalar Banco de Dados",
+        "description": "Rota responsável por criar as tabelas e registros no Banco do usuário",
         "responses": {
           "201": {
             "description": "Created"
@@ -745,6 +821,16 @@
             "description": "Bad Request"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "in": "header"
       }
     }
   }

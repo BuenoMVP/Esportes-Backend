@@ -3,6 +3,9 @@ const { createToken } = require('../middlewares/authMiddleware')
 const auth = require('../middlewares/authService')
 
 const createUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'Criar usuário'
+    // #swagger.description = 'Rota responsável por criar as credenciais de login para um novo usuário'
     const { user, password, addInfo } = req.body
 
     try {
@@ -30,6 +33,9 @@ const createUser = async (req, res) => {
 }
 
 const createUserAdmin = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'ADM - Criar administrador da API'
+    // #swagger.description = 'Rota responsável por criar os administradores da API. Acessível somente por ADMs'
     const { user, password, admin, addInfo } = req.body
 
     try {
@@ -57,6 +63,9 @@ const createUserAdmin = async (req, res) => {
 }
 
 const listAllUsers = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'ADM - Listar todos os usuário cadastrados'
+    // #swagger.description = 'Rota responsável por listar todos os usuários cadastrados na aplicação. Acessível somente por ADMs'
     const limit = parseInt(req.query.limite) || 5
     const pagina = parseInt(req.query.pagina) || 1
     const offset = limit * (pagina - 1)
@@ -70,6 +79,9 @@ const listAllUsers = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'Fazer login na API'
+    // #swagger.description = 'Rota responsável por realizar a validação e entrega do token de acesso ao usuário'
     const { user, password } = req.body
 
     try {
@@ -90,6 +102,9 @@ const getUser = async (req, res) => {
 }
 
 const updateAllUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'ADM - Atualizar usuários da API'
+    // #swagger.description = 'Rota responsável por atulizar as informações e permissões dos usuários cadastrados na API. Acessível somente por ADMs'
     const { id } = req.params
     const { user, password, admin, addInfo } = req.body
     
@@ -113,6 +128,9 @@ const updateAllUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'Atualizar dados do usuário'
+    // #swagger.description = 'Rota responsável por atualizar as informações pessoais do usuário autenticado'
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
 
@@ -138,6 +156,9 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'Deletar dados do usuário'
+    // #swagger.description = 'Rota responsável por deletar os dados do usuário autenticado'
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
 
@@ -156,6 +177,9 @@ const deleteUser = async (req, res) => {
 }
 
 const deleteAllUser = async (req, res) => {
+    // #swagger.tags = ['User']
+    // #swagger.summary = 'ADM - Deletar usuário da API'
+    // #swagger.description = 'Rota responsável por deletar usuário cadastrados na API. Acessível somente por ADMs'
     const { id } = req.params
 
     try {
