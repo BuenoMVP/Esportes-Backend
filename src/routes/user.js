@@ -17,10 +17,10 @@ router.delete('/', verifyToken, deleteUser)
 //Rotas para os administradores
 router.get('/users', verifyTokenAdmin, listAllUsers)
 
-router.post('/Adm', verifyTokenAdmin, createUserAdmin)
+router.post('/adm', verifyTokenAdmin, createUserAdmin)
 
 router.put('/adm/:id', verifyTokenAdmin, updateAllUser)
 
-router.delete('/Adm/:id', verifyTokenAdmin, deleteAllUser)
+router.delete('/adm/:id', verifyTokenAdmin, deleteAllUser)
 
 module.exports = router

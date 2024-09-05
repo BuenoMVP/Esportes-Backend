@@ -21,6 +21,9 @@ app.use('/login', userRouter)
 const categoryRouter = require('./routes/category')
 app.use('/category', categoryRouter)
 
+const installRouter = require('./routes/install')
+app.use('/install', installRouter)
+
 //Iniciando servidor
 const port = process.env.PORT || 3000;
 
