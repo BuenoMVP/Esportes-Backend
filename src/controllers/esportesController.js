@@ -7,6 +7,9 @@ const createEsporte = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'Criação de Esportes'
     // #swagger.description = 'Rota responsável por criar os esportes na conta do usário autenticado'
+    /* #swagger.security = [{
+            "bearerAuth": []
+    }] */
     const token = req.headers['authorization'].split(" ")
     const credential = auth.decodeAuth(token[1])
     

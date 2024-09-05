@@ -6,7 +6,7 @@ const endpoints = [ './src/server.js' ]
 const doc = {
     info: {
       title: 'Projeto Final de Back-End',
-      description: 'Documentação das rotas presentes no prjeto final utilizando o Swagger'
+      description: 'Documentação das rotas presentes no projeto final utilizando o Swagger'
     },
     components: {
       securitySchemes:{
