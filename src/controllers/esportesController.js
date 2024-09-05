@@ -1,7 +1,7 @@
 //imports
 const auth = require('../middlewares/authService')
 const Esportes = require('../model/Esportes')
-const categorySchema = require('../model/Category')
+const Category = require('../model/Category')
 
 const createEsporte = async (req, res) => {
     const token = req.headers['authorization'].split(" ")
@@ -10,7 +10,7 @@ const createEsporte = async (req, res) => {
     const { name, players_number, type } = req.body
     
     try {
-        const objTypes = await categorySchema.find({ id_api: type })
+        const objTypes = await Category.find({ id_api: type })
 
         if (!objTypes) {
             res.status(404).send({Error: "Types Not Found!"})
@@ -49,7 +49,7 @@ const updateEsporte = async (req, res) => {
     const { name, players_number, type } = req.body
     
     try {
-        const objTypes = await categorySchema.find({ id_api: type })
+        const objTypes = await Category.find({ id_api: type })
 
         if (!objTypes) {
             res.status(404).send({ Error: "Types Not Found!" })
@@ -115,4 +115,26 @@ const deleteEsporte = async (req, res) => {
     }
 }
 
-module.exports = { createEsporte, listAllEsportes, updateEsporte, deleteEsporte }
+const listEsportesByCategory = async (req, res) => {
+    const { type } = req.body
+
+    try {
+        const typesList = await Category.find({ id_api: type })
+        
+        if (!typesList) {
+            res.status(404).send({ Error: "Types Not Found!" })
+        }
+        
+        const listEsportesByCategory = await Esportes.find({ type: typesList }).populate('type')
+
+        if (listEsportesByCategory.length > 0)
+            res.status(200).send(listEsportesByCategory)
+        else
+            res.status(404).send({ Error: "Esportes by Category Not Found!" })
+
+    } catch (err) {
+        res.status(500).send({ "Error to list esportes by category": err })
+    }
+}
+
+module.exports = { createEsporte, listAllEsportes, updateEsporte, deleteEsporte, listEsportesByCategory }
