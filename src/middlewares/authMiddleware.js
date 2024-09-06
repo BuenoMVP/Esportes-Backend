@@ -1,9 +1,11 @@
+//import
 const auth = require('./authService')
 
+//função para criação do token
 const createToken = (user) => {
     let { id_api, admin } = user
 
-    let token = auth.codeAuth({ id: id_api, admin: admin })
+    let token = auth.codeAuth({ id: id_api, admin: admin })//codificação das informações
 
     if (admin) {
         return { admin: admin, token: token }
@@ -12,14 +14,16 @@ const createToken = (user) => {
     }
 }
 
+//middleware para verificar se o usuário possui um token válido
 const verifyToken = (req, res, next) => {
+    //recebe o token informado
     let bearToken = req.headers['authorization'] || ""
     let token = bearToken.split(" ")
 
     try {
         if (token[0] == 'Bearer') {
             token = token[1]
-            const credentials = auth.decodeAuth(token)
+            const credentials = auth.decodeAuth(token)//verifica se é válido
             credentials ? next() : res.json({ error: 'You do not have permission to access this page!'})
             
         } else {
@@ -31,14 +35,16 @@ const verifyToken = (req, res, next) => {
     }
 }
 
+//middleware para verificar se o usuário possui um token válido e permissão de administrador
 const verifyTokenAdmin = (req, res, next) => {
+    //recebe o token informado
     let bearToken = req.headers['authorization'] || ""
     let token = bearToken.split(" ")
 
     try {
         if (token[0] == 'Bearer') {
             token = token[1]
-            const credentials = auth.decodeAuth(token)
+            const credentials = auth.decodeAuth(token)//verifica se é válido
             credentials.admin ? next() : res.status(403).json({ error: 'You do not have permission to access this page!'})
             
         } else {

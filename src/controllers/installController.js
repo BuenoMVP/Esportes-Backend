@@ -1,7 +1,9 @@
+//imports
 const Esportes = require('../model/Esportes')
 const User = require('../model/User')
 const Category = require('../model/Category')
 
+//função para inserção de dados no bd
 const install = async (req, res) => {
     // #swagger.tags = ['Install']
     // #swagger.summary = 'Instalar Banco de Dados'

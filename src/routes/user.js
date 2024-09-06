@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
+//recebe os middleware e controllers
 const { verifyTokenAdmin, verifyToken } = require('../middlewares/authMiddleware')
 const { createUser, listAllUsers, getUser, updateUser, deleteUser, createUserAdmin, updateAllUser, deleteAllUser } = require('../controllers/userController')
 

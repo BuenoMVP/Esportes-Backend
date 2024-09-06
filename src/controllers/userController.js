@@ -1,7 +1,9 @@
+//imports
 const User = require('../model/User')
 const { createToken } = require('../middlewares/authMiddleware')
 const auth = require('../middlewares/authService')
 
+//função para criar um usuário
 const createUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'Criar usuário'
@@ -32,6 +34,7 @@ const createUser = async (req, res) => {
     }
 }
 
+//função para criar um usuário administrador
 const createUserAdmin = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'ADM - Criar administrador da API'
@@ -65,6 +68,7 @@ const createUserAdmin = async (req, res) => {
     }
 }
 
+//função para listar todos os usuários
 const listAllUsers = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'ADM - Listar todos os usuário cadastrados'
@@ -84,6 +88,7 @@ const listAllUsers = async (req, res) => {
     }
 }
 
+//função para realizar o login de um usuário
 const getUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'Fazer login na API'
@@ -107,6 +112,7 @@ const getUser = async (req, res) => {
     }
 }
 
+//função para atualizar os usuários cadastrados
 const updateAllUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'ADM - Atualizar usuários da API'
@@ -136,6 +142,7 @@ const updateAllUser = async (req, res) => {
     }
 }
 
+//função para atualizar as informações do usuário
 const updateUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'Atualizar dados do usuário'
@@ -167,6 +174,7 @@ const updateUser = async (req, res) => {
     }
 }
 
+//função para deletar as informações do usuário
 const deleteUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'Deletar dados do usuário'
@@ -191,6 +199,7 @@ const deleteUser = async (req, res) => {
     }
 }
 
+//função para deletar os usuários cadastrados
 const deleteAllUser = async (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.summary = 'ADM - Deletar usuário da API'
