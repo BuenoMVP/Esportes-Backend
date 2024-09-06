@@ -1,5 +1,7 @@
+//imports
 const Category = require('../model/Category')
 
+//função para criar uma categoria
 const createCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Criar Categoria no Banco'
@@ -22,6 +24,7 @@ const createCategory = async (req, res) => {
     }
 }
 
+//função para listar todas as categorias
 const listAllCategories = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'Lista as Categorias presentes no Banco'
@@ -38,6 +41,7 @@ const listAllCategories = async (req, res) => {
     }
 }
 
+//função para atalizar uma categoria
 const updateCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Atualizar Categoria no Banco'
@@ -64,6 +68,7 @@ const updateCategory = async (req, res) => {
     }
 }
 
+//função para deletar uma categoria
 const deleteCategory = async (req, res) => {
     // #swagger.tags = ['Category']
     // #swagger.summary = 'ADM - Deletar Categoria no Banco'

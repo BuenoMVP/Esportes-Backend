@@ -6,7 +6,7 @@ const bd_passwd = process.env.BD_PASSWORD
 async function connection() {
     try {
         mongoose.set('strictQuery', true)
-        await mongoose.connect(`mongodb+srv://marcos_vbp:${bd_passwd}@cluster0.tr0f0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`)
+        await mongoose.connect(`mongodb+srv://marcos_vbp:${bd_passwd}@cluster0.tr0f0.mongodb.net/`)
         console.log('MongoDB connected')
     } catch (err) {
         console.error('Erro connecting to DB: ' + err)

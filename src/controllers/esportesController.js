@@ -3,6 +3,7 @@ const auth = require('../middlewares/authService')
 const Esportes = require('../model/Esportes')
 const Category = require('../model/Category')
 
+//função para criar um esporte
 const createEsporte = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'Criação de Esportes'
@@ -38,6 +39,7 @@ const createEsporte = async (req, res) => {
     }
 }
 
+//função para listar todos os esportes
 const listAllEsportes = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'ADM - Lista todos os esportes no BD'
@@ -57,6 +59,7 @@ const listAllEsportes = async (req, res) => {
     }
 }
 
+//função para atualizar um esporte
 const updateEsporte = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'Altera os esportes do usuário'
@@ -108,6 +111,7 @@ const updateEsporte = async (req, res) => {
     }
 }
 
+//função para deletar um esporte
 const deleteEsporte = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'Deleta os esportes do usuário'
@@ -143,6 +147,7 @@ const deleteEsporte = async (req, res) => {
     }
 }
 
+//função para filtrar os esportes por categoria
 const listEsportesByCategory = async (req, res) => {
     // #swagger.tags = ['Feature']
     // #swagger.summary = 'ADM - Lista, por categoria, todos os esportes do BD'
@@ -175,6 +180,7 @@ const listEsportesByCategory = async (req, res) => {
     }
 }
 
+//função para listar os esportes por usuário
 const listEsportesByUser = async (req, res) => {
     // #swagger.tags = ['API']
     // #swagger.summary = 'Lista os esportes do usuário'
