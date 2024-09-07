@@ -15,6 +15,7 @@ const install = async (req, res) => {
                 user: 'admin',
                 password: 'admin',
                 admin: true,
+                acessos: 0,
                 addInfo: 'Administrador da api'
             },
             {
@@ -22,6 +23,7 @@ const install = async (req, res) => {
                 user: 'user1',
                 password: 'user1',
                 admin: false,
+                acessos: 0,
                 addInfo: 'Usuario normal da api'
             },
             {
@@ -29,6 +31,7 @@ const install = async (req, res) => {
                 user: 'user2',
                 password: 'user2',
                 admin: false,
+                acessos: 0,
                 addInfo: 'Usuario normal da api'
             },
             {
@@ -36,6 +39,7 @@ const install = async (req, res) => {
                 user: 'user3',
                 password: 'user3',
                 admin: false,
+                acessos: 0,
                 addInfo: 'Usuario normal da api'
             },
             {
@@ -43,6 +47,7 @@ const install = async (req, res) => {
                 user: 'user4',
                 password: 'user4',
                 admin: false,
+                acessos: 0,
                 addInfo: 'Usuario normal da api'
             }
         ] 

@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    acessos: {
+        type: Number,
+        required: true
+    },
     addInfo: {
         type: String, 
         required: false

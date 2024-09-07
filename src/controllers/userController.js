@@ -104,6 +104,9 @@ const getUser = async (req, res) => {
         if (validUser.length <= 0) {
             res.status(404).send({ err: "User not found!" })
         } else {
+            const id_user = validUser[0].id_api
+            const acessos = validUser[0].acessos + 1
+            const acessUser = await User.findOneAndUpdate({ id_api: id_user }, { acessos: acessos })
             let authToken = createToken(validUser[0])
             res.status(200).send( authToken )
         }
@@ -223,4 +226,19 @@ const deleteAllUser = async (req, res) => {
     }
 }
 
-module.exports = { createUser, listAllUsers, getUser, updateUser, deleteUser, createUserAdmin, updateAllUser, deleteAllUser }
+const getAcessosUser = async (req, res) => {
+    const token = req.headers['authorization'].split(" ")
+    const credential = auth.decodeAuth(token[1])
+
+    try {
+        const acessosUser = await User.find({ id_api: credential.id })
+        const login= acessosUser[0].user
+        const qtd = acessosUser[0].acessos
+
+        res.status(200).send({ "User": login, "Quantidade de acessos do usuario": qtd })
+    } catch (err) {
+        res.status(500).send({ "Error to update user": err })
+    }
+}
+
+module.exports = { createUser, listAllUsers, getUser, updateUser, deleteUser, createUserAdmin, updateAllUser, deleteAllUser, getAcessosUser }

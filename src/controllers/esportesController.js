@@ -168,7 +168,7 @@ const listEsportesByCategory = async (req, res) => {
             res.status(404).send({ Error: "Types Not Found!" })
         }
         
-        const listEsportesByCategory = await Esportes.find({ type: typesList }).skip(offset).limit(limit).populate('type')
+        const listEsportesByCategory = await Esportes.find({ type: {$all: typesList} }).skip(offset).limit(limit).populate('type')
 
         if (listEsportesByCategory.length > 0)
             res.status(200).send(listEsportesByCategory)
